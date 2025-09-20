@@ -33,31 +33,33 @@ function App() {
 
   return (
     <>
-      <h1 className='text-4xl text-center text-white my-6 font-bold'>Password Generator</h1>
+      <h1 className='text-3xl sm:text-4xl text-center text-white my-6 font-bold'>Password Generator</h1>
+      
       <div className='w-full max-w-md mx-auto bg-gray-800 rounded-2xl p-6 shadow-xl'>
         
         {/* Password display with Copy button */}
-        <div className='flex items-center bg-gray-700 rounded-lg overflow-hidden shadow-lg mb-4'>
+        <div className='flex flex-col sm:flex-row items-stretch bg-gray-700 rounded-lg overflow-hidden shadow-lg mb-4'>
           <input
             type="text"
             value={password}
             placeholder='Generated Password'
             readOnly
             ref={passref}
-            className='w-full px-4 py-2 bg-gray-800 text-white placeholder-gray-400 outline-none'
+            className='flex-1 px-4 py-2 bg-gray-800 text-white placeholder-gray-400 outline-none text-sm sm:text-base'
           />
           <button
             onClick={copyPasswordToClipboard}
-            className='flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium transition rounded-r-lg'
+            className='flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium transition sm:rounded-r-lg rounded-b-lg sm:rounded-b-none'
           >
             Copy <IoCopy />
           </button>
         </div>
 
-        {/* Controls */}
-        <div className='flex justify-between items-center mt-4'>
+        {/* Controls (responsive layout) */}
+        <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center mt-4 gap-4'>
+          
           {/* Length slider */}
-          <div className='flex items-center gap-x-2 w-1/2'>
+          <div className='flex flex-col sm:flex-row items-start sm:items-center gap-2 w-full sm:w-1/2'>
             <input
               type="range"
               min={8}
@@ -66,11 +68,11 @@ function App() {
               className='cursor-pointer w-full accent-blue-600'
               onChange={(e) => setLength(e.target.value)}
             />
-            <label className='font-semibold text-white'>Length: {length}</label>
+            <label className='font-semibold text-white text-sm sm:text-base'>Length: {length}</label>
           </div>
 
           {/* Checkboxes side by side */}
-          <div className='flex items-center gap-x-4'>
+          <div className='flex flex-wrap items-center gap-4'>
             <div className='flex items-center gap-x-1'>
               <input
                 type="checkbox"
@@ -79,7 +81,7 @@ function App() {
                 className="w-4 h-4 accent-green-500"
                 onChange={() => setNumAllowed(prev => !prev)}
               />
-              <label htmlFor="numberInput" className="text-white">Numbers</label>
+              <label htmlFor="numberInput" className="text-white text-sm sm:text-base">Numbers</label>
             </div>
 
             <div className='flex items-center gap-x-1'>
@@ -90,7 +92,7 @@ function App() {
                 className="w-4 h-4 accent-pink-500"
                 onChange={() => setCharAllowed(prev => !prev)}
               />
-              <label htmlFor="charInput" className="text-white">Characters</label>
+              <label htmlFor="charInput" className="text-white text-sm sm:text-base">Characters</label>
             </div>
           </div>
         </div>
@@ -99,7 +101,7 @@ function App() {
         <div className="mt-6 text-center">
           <button
             onClick={passwordGen}
-            className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md transition"
+            className="w-full sm:w-auto px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md transition"
           >
             🔄 Regenerate Password
           </button>
